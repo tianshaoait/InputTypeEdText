@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/InputTypeEditText.iml" filepath="$PROJECT_DIR$/InputTypeEditText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InputTypeEdText.iml" filepath="$PROJECT_DIR$/InputTypeEdText.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>
