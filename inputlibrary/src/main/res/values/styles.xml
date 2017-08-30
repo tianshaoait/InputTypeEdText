@@ -1,0 +1,8 @@
+<resources>
+
+    <declare-styleable name="InputTypeEditText">
+        <attr name="inType" format="string" />
+    </declare-styleable>
+
+
+</resources>

@@ -1,4 +1,4 @@
-package com.tianshaoait.administrator.inputtypeedittext;
+package com.tianshaoait.administrator.inputlibrary;
 
 import android.content.Context;
 import android.content.res.TypedArray;

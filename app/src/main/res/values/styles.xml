@@ -8,9 +8,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <declare-styleable name="InputTypeEditText">
-        <attr name="inType" format="string" />
-    </declare-styleable>
-
 
 </resources>
