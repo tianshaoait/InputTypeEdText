@@ -33,7 +33,7 @@ public class InputTypeEditText extends EditText {
     public InputTypeEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs,
-               R.styleable.InputTypeEditText);
+                R.styleable.InputTypeEditText);
         int n = a.getIndexCount();
 
         for (int i = 0; i < n; i++) {
@@ -64,12 +64,12 @@ public class InputTypeEditText extends EditText {
         init();
     }
 
-    private void init(){
-        Drawable[] drawables=this.getCompoundDrawables();
+    private void init() {
+        Drawable[] drawables = this.getCompoundDrawables();
 
         //取得right位置的Drawable
         //即我们在布局文件中设置的android:drawableRight
-        mRightDrawable=drawables[2];
+        mRightDrawable = drawables[2];
 
         //设置焦点变化的监听
         this.setOnFocusChangeListener(new FocusChangeListenerImpl());
@@ -83,7 +83,7 @@ public class InputTypeEditText extends EditText {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                boolean isClean =(event.getX() > (getWidth() - getTotalPaddingRight()))&&
+                boolean isClean = (event.getX() > (getWidth() - getTotalPaddingRight())) &&
                         (event.getX() < (getWidth() - getPaddingRight()));
                 if (isClean) {
                     setText("");
@@ -96,12 +96,12 @@ public class InputTypeEditText extends EditText {
         return super.onTouchEvent(event);
     }
 
-    private class FocusChangeListenerImpl implements OnFocusChangeListener{
+    private class FocusChangeListenerImpl implements OnFocusChangeListener {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            isHasFocus=hasFocus;
+            isHasFocus = hasFocus;
             if (isHasFocus) {
-                boolean isVisible=getText().toString().length()>=1;
+                boolean isVisible = getText().toString().length() >= 1;
                 setClearDrawableVisible(isVisible);
             } else {
                 setClearDrawableVisible(false);
@@ -113,17 +113,17 @@ public class InputTypeEditText extends EditText {
     private class TextWatcherImpl implements TextWatcher {
         @Override
         public void afterTextChanged(Editable s) {
-            boolean isVisible=getText().toString().length()>=1;
+            boolean isVisible = getText().toString().length() >= 1;
             setClearDrawableVisible(isVisible);
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
         }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before,int count) {
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
         }
 
@@ -138,8 +138,8 @@ public class InputTypeEditText extends EditText {
             rightDrawable = null;
         }
         //使用代码设置该控件left, top, right, and bottom处的图标
-        setCompoundDrawables(getCompoundDrawables()[0],getCompoundDrawables()[1],
-                rightDrawable,getCompoundDrawables()[3]);
+        setCompoundDrawables(getCompoundDrawables()[0], getCompoundDrawables()[1],
+                rightDrawable, getCompoundDrawables()[3]);
     }
 
 
@@ -185,8 +185,38 @@ class mInputConnecttion extends InputConnectionWrapper implements
         //  英文 "[a-zA-Z /]+"
         //  数字 "[0-9]"
         // 符号 "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]"
+        // 邮箱号码 "\\w+@\\w+\\.[a-z]+(\\.[a-z]+)?"
+        // 手机号码 "(\\+\\d+)?1[3458]\\d{9}$"
+        // 身份证号 "[1-9]\\d{13,16}[a-zA-Z0-9]{1}"
+        // 邮政编码 "[1-9]\\d{5}"
+        // QQ "[1-9][0-9]{4,}"
+        // 银行卡号 "^\\d{16,19}$|^\d{6}[- ]\d{10,13}$|^\d{4}[- ]\d{4}[- ]\d{4}[- ]\d{4,7}$"
 
-        if (flag.contains(textType[0]) && flag.contains(textType[1]) && flag.contains(textType[2]) && flag.contains(textType[3])) {
+        if (flag.equals("邮箱号码")) {
+            if (!text.toString().matches("\\w+@\\w+\\.[a-z]+(\\.[a-z]+)?")){
+                return false;
+            }
+        } else if (flag.equals("手机号码")) {
+            if (!text.toString().matches("(\\+\\d+)?1[3458]\\d{9}$")){
+                return false;
+            }
+        }  else if (flag.equals("身份证号")) {
+            if (!text.toString().matches("[1-9]\\d{13,16}[a-zA-Z0-9]{1}")){
+                return false;
+            }
+        }else if (flag.equals("邮政编码")) {
+            if (!text.toString().matches("[1-9]\\d{5}")){
+                return false;
+            }
+        } else if (flag.equals("QQ")) {
+            if (!text.toString().matches("[1-9][0-9]{4,}")){
+                return false;
+            }
+        } else if (flag.equals("银行卡号")) {
+            if (!text.toString().matches("^\\d{16,19}$|^\\d{6}[- ]\\d{10,13}$|^\\d{4}[- ]\\d{4}[- ]\\d{4}[- ]\\d{4,7}$")){
+                return false;
+            }
+        } else if (flag.contains(textType[0]) && flag.contains(textType[1]) && flag.contains(textType[2]) && flag.contains(textType[3])) {
             if (!text.toString().matches(textTypeFormat[0]) && !text.toString().matches(textTypeFormat[1]) && !text.toString().matches(textTypeFormat[2]) && !text.toString().matches(textTypeFormat[3])) {
                 return false;
             }
