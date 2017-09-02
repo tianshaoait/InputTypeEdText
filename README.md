@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:drawableRight="@drawable/edtx_clean" />
         
-        app:inType可以输入"邮箱"、
-        
+     app:inType可以输入"邮箱号码"、"手机号码"、"身份证号"、"邮政编码"、"QQ"、"银行卡号"
+
+       
 #  drawableRight图片有clear清空效果
